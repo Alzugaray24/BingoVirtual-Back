@@ -43,7 +43,7 @@ export const initializeSocket = (io) => {
         socket.join(gameId);
         socket.emit("gameJoined", game);
 
-        io.to(gameId).emit("playerJoined", game);
+        io.emit("playerJoined", game);
       } catch (err) {
         emitError(err.message);
       }
@@ -53,6 +53,8 @@ export const initializeSocket = (io) => {
       try {
         const game = await gameService.startGame(gameId);
         io.to(gameId).emit("gameStarted", game);
+
+        io.emit("gameStartedAll", game);
       } catch (err) {
         emitError(err.message);
       }
