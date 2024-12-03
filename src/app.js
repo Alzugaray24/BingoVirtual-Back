@@ -16,4 +16,8 @@ app.get("/", (req, res) => {
   res.send("Servidor del sexo");
 });
 
+app.get("/hola", (req, res) => {
+  res.send("Servidor del sexo");
+});
+
 export default app;
