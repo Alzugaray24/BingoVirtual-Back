@@ -95,13 +95,13 @@ export const initializeSocket = (io) => {
       try {
         const game = await gameService.endGame(gameId);
         io.to(gameId).emit("gameEnded", game);
+
+        io.emit("gameEndedAll", game);
       } catch (err) {
         emitError(err.message);
       }
     });
 
-    socket.on("disconnect", () => {
-      // Cliente desconectado
-    });
+    socket.on("disconnect", () => {});
   });
 };
